@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+
+  frontend:
+    build: frontend
+    image: sravya15082003/docker-assignment-frontend:latest
+    hostname: frontend-host
+    volumes:
+      - ./frontend:/app
+    ports:
+      - "3000:3000"
+    environment:
+      - BACKEND_URL=http://backend:5000/submit
+    networks:
+      - ares-network
+  backend:
+    build: backend
+    image: sravya15082003/docker-assignment-backend:latest
+    hostname: backend-host
+    volumes:
+      - ./backend:/app
+    ports:
+      - "5000:5000"
+    networks:
+      - ares-network
+
+networks:
+  ares-network: {}
